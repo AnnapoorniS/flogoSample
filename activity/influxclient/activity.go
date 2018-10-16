@@ -30,7 +30,7 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	// do eval
-	messages := context.GetInput("data").(map[string]interface{})
+	//messages := context.GetInput("data").(map[string]interface{})
 	database := context.GetInput("database").(string)
 	server_address := context.GetInput("addr").(string)
 
@@ -79,7 +79,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		log.Fatal(err)
 	}
 
-	context.SetOutput("output", "Inserted "+database+" to "+server_address+"data "+messages)
+	context.SetOutput("output", "Inserted "+database+" to "+server_address)
 
 	return true, nil
 }
