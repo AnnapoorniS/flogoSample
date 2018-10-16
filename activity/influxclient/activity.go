@@ -55,9 +55,15 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	}
 
 	// Create a point and add to batch
-	tags := map[string]string{"test": "test_msg"}
+	tags := map[string]string{"testt": "test_mg"}
+	fields := map[string]interface{}{
+		"idle":   10.1,
+		"system": 53.3,
+		"user":   46.6,
+	}
 
-	pt, err := client.NewPoint("test_messages", tags, messages, time.Now())
+
+	pt, err := client.NewPoint("test_msg", tags, fields, time.Now())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -73,7 +79,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		log.Fatal(err)
 	}
 
-	context.SetOutput("output", "Inserted "+database+" to "+server_address)
+	context.SetOutput("output", "Inserted "+database+" to "+server_address+"data "+messages)
 
 	return true, nil
 }
