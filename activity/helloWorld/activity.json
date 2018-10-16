@@ -2,8 +2,9 @@
   "name": "helloWorld",
   "version": "0.0.1",
   "type": "flogo:activity",
+  "title": "HelloWorlld",
   "description": "activity description",
-  "ref": "github.com/yourusername/yourrepository",
+  "ref": "github.com/AnnapoorniS/flogoSample",
   "author": "Your Name <you.name@example.org>",
   "inputs":[
     {
