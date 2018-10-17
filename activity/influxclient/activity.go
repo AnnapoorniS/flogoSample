@@ -1,6 +1,7 @@
 package influxclient
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
@@ -30,11 +31,23 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	// do eval
-	fields := context.GetInput("data").(map[string]interface{})
+	message := context.GetInput("data").(string)
 	database := context.GetInput("database").(string)
 	server_address := context.GetInput("addr").(string)
 
 	logg.Debugf("Test connection db [%s] to [%s]", database, server_address)
+	
+	//Convert the json to influx fields
+	byt := []byte(input)
+
+	var fields map[string]interface{}
+	
+	if err := json.Unmarshal(byt, &fields); err != nil {
+		context.SetOutput("result", "ERROR_JSON_DECODE")
+		return true, nil
+	}
+	log.Debug("Umarchalled: ", fields)
+
 
 	// Make client
 	c, err := client.NewHTTPClient(client.HTTPConfig{
@@ -62,7 +75,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	// Write the batch
 	c.Write(bp)
 
-	context.SetOutput("output", "Inserted "+database+" to "+server_address)
+	context.SetOutput("output", "Successfully Inserted "+database+" to "+server_address)
 
 	return true, nil
 }

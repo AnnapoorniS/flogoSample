@@ -9,7 +9,7 @@
   "inputs":[
     {
       "name": "data",
-      "type": "any"
+      "type": "string"
     },
     {
       "name": "addr",
