@@ -74,7 +74,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	// Write the batch
 	c.Write(bp)
 
-	context.SetOutput("output", "Successfully Inserted "+database+" to "+server_address)
+	context.SetOutput("output", "Successfully Inserted to "+database)
 
 	return true, nil
 }
