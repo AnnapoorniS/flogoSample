@@ -26,6 +26,10 @@
     {
       "name": "output",
       "type": "string"
+    },
+    {
+      "name": "msg_data",
+      "type": "any"
     }
   ]
 }

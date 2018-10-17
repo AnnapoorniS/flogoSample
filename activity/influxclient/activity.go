@@ -47,6 +47,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		context.SetOutput("result", "ERROR_JSON_DECODE")
 		return true, nil
 	}
+	context.SetOutput("msg_data", fields)
 
 	// Make client
 	c, err := client.NewHTTPClient(client.HTTPConfig{
