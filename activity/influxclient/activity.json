@@ -4,12 +4,12 @@
   "title": "Influx",
   "type": "flogo:activity",
   "description": "Writes the message object to influx db",
-  "ref": "github.com/AnnapoorniS/flogoSample",
+  "ref": "github.com/AnnapoorniS/flogoSample/activity/influxclient",
   "author": "Your Name <you.name@example.org>",
   "inputs":[
     {
       "name": "data",
-      "type": "object"
+      "type": "any"
     },
     {
       "name": "addr",

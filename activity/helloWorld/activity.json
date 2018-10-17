@@ -4,7 +4,7 @@
   "type": "flogo:activity",
   "title": "HelloWorlld",
   "description": "activity description",
-  "ref": "github.com/AnnapoorniS/flogoSample",
+  "ref": "github.com/AnnapoorniS/flogoSample/activity/helloWorld",
   "author": "Your Name <you.name@example.org>",
   "inputs":[
     {
