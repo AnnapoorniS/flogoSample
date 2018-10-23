@@ -12,6 +12,14 @@
       "type": "string"
     },
     {
+      "name": "tagkey",
+      "type": "string"
+    },
+    {
+      "name": "tagvalue",
+      "type": "string"
+    },
+    {
       "name": "addr",
       "type": "string",
       "required": true

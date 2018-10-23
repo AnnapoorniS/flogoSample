@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
-	
+
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/influxdata/influxdb/client/v2"
@@ -35,14 +35,16 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	message := context.GetInput("data").(string)
 	database := context.GetInput("database").(string)
 	server_address := context.GetInput("addr").(string)
+	tagKey := context.GetInput("tagkey").(string)
+	tagValue := context.GetInput("tagvalue").(string)
 
 	logg.Debugf("Test connection db [%s] to [%s]", database, server_address)
-	
+
 	//Convert the json to influx fields
 	byt := []byte(message)
 
 	var fields map[string]interface{}
-	
+
 	if err := json.Unmarshal(byt, &fields); err != nil {
 		context.SetOutput("result", "ERROR_JSON_DECODE")
 		return true, nil
@@ -65,7 +67,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	})
 
 	// Create a point and add to batch
-	tags := map[string]string{"test": "test-message"}
+	tags := map[string]string{tagKey: tagValue"}
 	pt, err := client.NewPoint("test_msg", tags, fields, time.Now())
 	if err != nil {
 		fmt.Println("Error: ", err.Error())
