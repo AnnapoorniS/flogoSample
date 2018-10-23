@@ -20,6 +20,11 @@
       "type": "string"
     },
     {
+      "name": "measurement",
+      "type": "string",
+      "required": true
+    },
+    {
       "name": "addr",
       "type": "string",
       "required": true

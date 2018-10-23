@@ -37,6 +37,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	server_address := context.GetInput("addr").(string)
 	tagKey := context.GetInput("tagkey").(string)
 	tagValue := context.GetInput("tagvalue").(string)
+	measurement := context.GetInput("measurement").(string)
 
 	logg.Debugf("Test connection db [%s] to [%s]", database, server_address)
 
@@ -68,7 +69,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	// Create a point and add to batch
 	tags := map[string]string{tagKey: tagValue}
-	pt, err := client.NewPoint("test_msg", tags, fields, time.Now())
+	pt, err := client.NewPoint(measurement, tags, fields, time.Now())
 	if err != nil {
 		fmt.Println("Error: ", err.Error())
 	}
